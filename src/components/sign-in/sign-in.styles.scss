@@ -1,3 +1,15 @@
 .sign-in {
+    display: flex;
+    flex-direction: column;
     width: 30vw;
+    margin: 50px auto;
+
+    h2 {
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .account-status-toggle {
+        margin-top: 20px;
+    }
 }
