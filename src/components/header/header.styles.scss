@@ -4,22 +4,17 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
+}
   
-    .logo-container {
-      height: 100px;
-      width: 100px;
-    }
-  
-    .options {
-      width: 50%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-  
-      .option {
-        padding: 10px 15px;
-      }
-    }
+.options {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .option {
+    padding: 10px 15px;
   }
+}
   
