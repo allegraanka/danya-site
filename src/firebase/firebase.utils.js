@@ -14,6 +14,30 @@ const config = {
     measurementId: "G-LER8L0H3PZ"
   };
 
+  // using firestore database, take user auth object from Google and store it in our DB
+  export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if (!userAuth) return;
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const snapshot = await userRef.get();
+
+    if (!snapshot.exists) {
+      const { displayName, email } = userAuth;
+      const createdAt = new Date();
+      try {
+        await userRef.set({
+          displayName,
+          email,
+          createdAt,
+          ...additionalData
+        })
+      } catch(error) {
+        console.log("error creating user: ", error.message);
+      }
+    }
+    return userRef;
+  }
+
   // pass specific config values into this firebase init method
   firebase.initializeApp(config);
 
