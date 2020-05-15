@@ -13,15 +13,15 @@ const Header = ({ currentUser }) => (
         <div className='nav-options options'>
             <Link className='nav-shop-link option' to='/shop'>SHOP</Link>
             <Link className='nav-contact-link option' to='/contact'>CONTACT</Link>
-            {
-                currentUser ? (
+            {currentUser ? (
                 <div className='nav-auth-link option' onClick={() => 
-                    auth.signOut().then(function() {
+                    auth.signOut()
+                    .then(() => {
                         window.location.href = '/';
-                        console.log(`user successfully signed out.`);
-                  }).catch(function(error) {
-                      console.log(`there was an error: ${error}`);
-                  })}>
+                        console.log("User signed out successfully.");
+                    })
+                    .catch((error) => console.log('There was an error signing out.', error)) 
+                }>
                     SIGN OUT
                 </div> 
                  ) : ( 
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
 });
 
 // connect component to the store
-export default connect(mapStateToProps, )(Header);
+export default connect(mapStateToProps)(Header);
