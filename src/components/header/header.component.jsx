@@ -1,9 +1,14 @@
 import React from 'react';
 import './header.styles.scss';
+
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
@@ -38,9 +43,10 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 // used to grab data from the store that the connected component needs as props
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden }}) => ({
-    currentUser,
-    hidden
+// createStructuredSelector takes top-level state and passes it down to each selector 
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 });
 
 // connect component to the data store - the root reducer
