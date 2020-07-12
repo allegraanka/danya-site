@@ -1,7 +1,6 @@
 import React from 'react';
-import './header.styles.scss';
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink, OptionDiv } from './header.styles';
 
-import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
@@ -13,15 +12,15 @@ import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 const Header = ({ currentUser, hidden }) => (
-    <div className='header'>
-        <Link className='logo-container' to='/'>
+    <HeaderContainer>
+        <LogoContainer to='/'>
             <Logo className='logo' />
-        </Link>
-        <div className='nav-options options'>
-            <Link className='nav-shop-link option' to='/shop'>SHOP</Link>
-            <Link className='nav-contact-link option' to='/contact'>CONTACT</Link>
+        </LogoContainer>
+        <OptionsContainer>
+            <OptionLink to='/shop'>SHOP</OptionLink>
+            <OptionLink to='/contact'>CONTACT</OptionLink>
             {currentUser ? (
-                <div className='nav-auth-link option' onClick={() => 
+                <OptionDiv onClick={() => 
                     auth.signOut()
                     .then(() => {
                         window.location.href = '/';
@@ -30,16 +29,16 @@ const Header = ({ currentUser, hidden }) => (
                     .catch((error) => console.log('There was an error signing out.', error)) 
                 }>
                     SIGN OUT
-                </div> 
+                </OptionDiv> 
                  ) : ( 
-                <Link className='nav-auth-link option' to='/sign-in'>
+                <OptionLink to='/sign-in'>
                     SIGN IN
-                </Link>
+                </OptionLink>
             )}
             <CartIcon />
-        </div>
+        </OptionsContainer>
         { hidden ? null : <CartDropdown /> }
-    </div>
+    </HeaderContainer>
 );
 
 // used to grab data from the store that the connected component needs as props
