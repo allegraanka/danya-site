@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink, OptionDiv } from './header.styles';
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { auth } from '../../firebase/firebase.utils';
@@ -20,7 +20,7 @@ const Header = ({ currentUser, hidden }) => (
             <OptionLink to='/shop'>SHOP</OptionLink>
             <OptionLink to='/contact'>CONTACT</OptionLink>
             {currentUser ? (
-                <OptionDiv onClick={() => 
+                <OptionLink as='div' onClick={() => 
                     auth.signOut()
                     .then(() => {
                         window.location.href = '/';
@@ -29,7 +29,7 @@ const Header = ({ currentUser, hidden }) => (
                     .catch((error) => console.log('There was an error signing out.', error)) 
                 }>
                     SIGN OUT
-                </OptionDiv> 
+                </OptionLink> 
                  ) : ( 
                 <OptionLink to='/sign-in'>
                     SIGN IN
