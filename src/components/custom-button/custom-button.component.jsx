@@ -1,12 +1,9 @@
 import React from 'react';
-import './custom-button.styles.scss';
+import { CustomButtonContainer } from './custom-button.styles';
 
-const CustomButton = ({ children, isGoogleSignIn, inverted, ...otherProps }) => (
-    // takes the children of whatever the current input is and passes it into the button
-    // spreads other necessary props in (i.e. type="submit")
-    <button className={`${inverted ? 'inverted' : ''} ${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`} {...otherProps}>
-        { children }
-    </button>
+const CustomButton = ({ children, ...props }) => (
+    // refactored with styled-components library and created CustomButtonContainer with function that conditionally renders styles based on props
+    <CustomButtonContainer {...props}>{children}</CustomButtonContainer>
 )
 
 export default CustomButton;
