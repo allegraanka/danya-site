@@ -38,6 +38,20 @@ const config = {
     return userRef;
   }
 
+  export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = firestore.collection(collectionKey);
+    console.log(collectionRef);
+
+    const batch = firestore.batch();
+
+    objectsToAdd.forEach(obj => {
+      const newDocRef = collectionRef.doc();
+      batch.set(newDocRef, obj);
+    });
+
+    return await batch.commit();
+  }
+
   // pass specific config values into this firebase init method
   firebase.initializeApp(config);
 
