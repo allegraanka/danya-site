@@ -24,16 +24,16 @@ export const baseButtonStyles = css`
 `;
 
 export const invertedButtonStyles = css`
-    &.inverted {
-      background-color: white;
-      color: black;
-      border: 1px solid black;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    position: absolute;
+    bottom: 30px;
 
-      &:hover {
+    &:hover {
         background-color: black;
         color: white;
         border: none;
-      }
     }
 `;
 
